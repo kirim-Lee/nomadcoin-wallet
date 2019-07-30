@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "outDir": "./built",
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "rootDir": "./",
+    "target": "es5",
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "*": ["/node_modules/*", "/nomadcoin/*", "/nomadcoin/src/types/*"]
+    },
+    "typeRoots": ["./node_modules/@types", "./nomadcoin/src/types"],
+    "declaration": true
+  },
+  "include": ["./**/*", "types/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"],
+  "sourceMap": true
+}
