@@ -8,4 +8,5 @@ getPort().then(port => {
     console.log(`running blockcahin node on: http://localhost:${port}`);
   });
   nomadcoin.startP2PServer(server);
+  global.sharePort = port;
 });

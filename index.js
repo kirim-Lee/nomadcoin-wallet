@@ -15,7 +15,10 @@ function createWindow() {
     width: 800,
     height: 600,
     resizable: false,
-    title: "Nomadcoin Wallet"
+    title: "Nomadcoin Wallet",
+    webPreferences: {
+      nodeIntegration: true
+    }
   });
 
   const ENV = process.env.ENV;
