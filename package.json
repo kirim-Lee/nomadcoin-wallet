@@ -8,8 +8,7 @@
   },
   "main": "index.js",
   "devDependencies": {
-    "concurrently": "^4.1.1",
-    "electron": "^6.0.0"
+    "concurrently": "^4.1.1"
   },
   "dependencies": {
     "@types/body-parser": "^1.17.0",
@@ -24,6 +23,8 @@
     "get-port": "^5.0.0",
     "nodemon": "^1.19.1",
     "ts-node": "^8.3.0",
-    "typescript": "^3.5.3"
+    "typescript": "^3.5.3",
+    "electron": "^1.8.3",
+    "electron-packager": "^11.1.0"
   }
 }
