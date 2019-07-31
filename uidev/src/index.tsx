@@ -3,13 +3,14 @@ import ReactDOM from "react-dom";
 import App from "./Components/App";
 import { remote } from "electron";
 
-declare global {
+/*declare global {
   interface Window {
     sharedPort: any;
   }
-}
+}*/
 
-const sharedPort = remote.getGlobal("sharedPort");
+console.log(remote.getGlobal);
+const sharedPort = 57163; // remote.getGlobal("sharedPort");
 
 ReactDOM.render(
   <App sharedPort={sharedPort} />,

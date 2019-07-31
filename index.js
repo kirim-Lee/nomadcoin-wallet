@@ -2,11 +2,7 @@ const electron = require("electron");
 const path = require("path"),
   url = require("url");
 
-
-const {
-  app,
-  BrowserWindow
-} = electron;
+const { app, BrowserWindow } = electron;
 
 let mainWindow = null;
 
@@ -42,10 +38,9 @@ function createWindow() {
   });
 }
 
-
 app.on(
   "window-all-closed",
-  (process.platform !== "darwin" && app.quit) || null
+  () => (process.platform !== "darwin" && app.quit()) || null
 );
 app.on("activate", (mainWindow === null && createWindow) || null);
 app.on("ready", createWindow);

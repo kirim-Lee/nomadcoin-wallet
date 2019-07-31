@@ -1,7 +1,9 @@
-import React from "react";
+import React, { Dispatch } from "react";
 
 interface IProps {
   loading: boolean;
+  handleInput: Dispatch<React.ChangeEvent<HTMLInputElement>>;
+  handleSubmit: Dispatch<React.FormEvent<HTMLFormElement>>;
 }
 
 const AppPresenter = (props: IProps) => {

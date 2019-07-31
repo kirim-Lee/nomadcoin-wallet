@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "nodemon --watch src --delay 1 --exec \"ts-node\" main.js",
-    "electron": "set ENV=dev && electron index.js",
+    "electron": "electron index.js",
     "dev": "concurrently  --kill-others \"yarn start\"  \" yarn startReact \" \"yarn electron\"",
     "startTsNode": "nodemon --watch src --delay 1 --exec \"ts-node\"",
     "startReact": "cd uidev && yarn start"
@@ -20,11 +20,12 @@
     "@types/ws": "^6.0.1",
     "body-parser": "^1.19.0",
     "cross-env": "^5.2.0",
+    "electron": "^6.0.0",
+    "electron-packager": "^11.1.0",
     "get-port": "^5.0.0",
     "nodemon": "^1.19.1",
+    "styled-components": "^4.3.2",
     "ts-node": "^8.3.0",
-    "typescript": "^3.5.3",
-    "electron": "^1.8.3",
-    "electron-packager": "^11.1.0"
+    "typescript": "@3.5.0"
   }
 }
