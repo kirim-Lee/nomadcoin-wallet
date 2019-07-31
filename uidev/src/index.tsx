@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import App from "./Components/App";
 import { remote } from "electron";
 
 declare global {
@@ -11,8 +11,7 @@ declare global {
 
 const sharedPort = remote.getGlobal("sharedPort");
 
-alert(sharedPort);
-
-window.sharedPort = sharedPort;
-
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+  <App sharedPort={sharedPort} />,
+  document.getElementById("root")
+);
