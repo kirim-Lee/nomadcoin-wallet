@@ -13,7 +13,10 @@ function createWindow() {
     resizable: false,
     title: "Nomadcoin Wallet",
     webPreferences: {
-      nodeIntegration: true
+      contextIsolation: false,
+      nodeIntegration: true, 
+      webviewTag: true
+
     }
   });
 

@@ -3,15 +3,6 @@ import AppPresenter from "./AppPresenter";
 import axios from "axios";
 import { MASTER_NODE, SELF_P2P, SELF_NODE } from "../../constant";
 
-interface IProps {
-  sharedPort: number;
-}
-
-interface ISendData {
-  address: string;
-  amount: number;
-}
-
 const AppContainer = (props: IProps) => {
   const [loading, setLoading] = useState(true);
   const [address, setAddress] = useState("");
@@ -19,12 +10,32 @@ const AppContainer = (props: IProps) => {
     (prev, next): ISendData => ({ ...prev, ...next }),
     { address: "", amount: 0 }
   );
+  const [balance, setBalance] = useState(0);
+  const [isMining, setMine] = useState(false)
 
   useEffect(() => {
     registOnMaster(props.sharedPort);
-    getAddress(props.sharedPort).then(result => setAddress(result));
-    setInterval(() => getBalance(props.sharedPort), 1000);
+
+    getAddress(props.sharedPort).then(result => {
+      setAddress(result);
+      setLoading(false);
+    });
+
+    const handleBalance = () => {
+      getBalance(props.sharedPort).then(bal => setBalance(bal));
+    }
+
+    const interval = setInterval(handleBalance, 2000);
+
+    return () => {
+      clearInterval(interval);
+    }
   }, [props.sharedPort]);
+
+  const handleBlock = () => {
+    setMine(true);
+    mineBlock(props.sharedPort).then(() => setMine(false))
+  }
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSendData({ [e.target.name]: e.target.value });
@@ -35,18 +46,22 @@ const AppContainer = (props: IProps) => {
     sendSubmit(props.sharedPort, sendData);
   };
 
-  return (
-    <AppPresenter
-      loading={loading}
-      handleInput={handleInput}
-      handleSubmit={handleSubmit}
-    />
-  );
+
+  return <AppPresenter
+    address={address}
+    loading={loading}
+    balance={balance}
+    isMining={isMining}
+    mineBlock={handleBlock}
+    data={sendData}
+    handleInput={handleInput}
+    handleSubmit={handleSubmit}
+  />;
 };
 
 const sendSubmit = async (port: number, data: ISendData) => {
   const res = await axios.post(`${SELF_NODE(port)}/transactions`, data);
-};
+}
 
 const registOnMaster = async (port: number) => {
   const res = await axios.post(`${MASTER_NODE}/peers`, {
@@ -62,7 +77,13 @@ const getAddress = async (port: number) => {
 
 const getBalance = async (port: number) => {
   const res = await axios.get(`${SELF_NODE(port)}/me/balance`);
-  return res.data;
+  const { balance } = res.data;
+  return balance;
 };
+
+const mineBlock = async (port: number) => {
+  const res = await axios.post(`${SELF_NODE(port)}/blocks`);
+  return res.data;
+}
 
 export default AppContainer;

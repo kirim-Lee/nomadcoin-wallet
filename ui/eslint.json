@@ -2,7 +2,6 @@
   "extends": ["tslint:recommended", "tslint-config-prettier"],
   "jsRules": {},
   "rules": {
-    "no-console": false,
     "trailing-comma": true,
     "ordered-imports": false,
     "no-var-requires": false,
