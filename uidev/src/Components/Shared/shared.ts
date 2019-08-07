@@ -28,6 +28,43 @@ export const KeyName = styled.span`
   color: #999;
 `;
 
+export const SharedInput = styled.input`
+background-color: white;
+  border: 0;
+  width: 100px;
+  padding: 10px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #305371;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: all 0.1s linear;
+  &:focus,
+  &:active {
+    outline: none;
+  }
+  &:hover {
+    box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+    transform: translateY(-1px);
+  }
+  &:active {
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    background-color: #f6f9fc;
+    transform: translateY(1px);
+  }
+  &:disabled {
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    background-color: #f6f9fc;
+    transform: none;
+    cursor: progress;
+    &:focus,
+    &:active,
+    &:hover {
+      transform: none;
+    }
+  }
+`;
+
 export const Button = styled.button`
   background-color: white;
   border: 0;

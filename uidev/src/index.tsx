@@ -11,7 +11,7 @@ import App from "./Components/App";
 
 // const sharedPort = remote.getGlobal("sharedPort");
 
-const sharedPort = 52196;
+const sharedPort = 49862;
 
 ReactDOM.render(
   <App sharedPort={sharedPort} />,

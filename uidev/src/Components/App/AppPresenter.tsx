@@ -6,7 +6,8 @@ import {
   KeyName,
   Title,
   // Notification,
-  Button
+  Button,
+  SharedInput
 } from "../Shared";
 
 const Header = styled.div`
@@ -29,7 +30,7 @@ const SendTxForm = styled.form`
   margin-top: 25px;
 `;
 
-const Submit = styled.input`
+const Submit = styled(SharedInput)`
   margin-right:10px;
   border: 2px solid #305371;
   box-shadow:none;
@@ -45,7 +46,7 @@ const Submit = styled.input`
   }
 `;
 
-const Input = styled.input`
+const Input = styled(Submit)`
   width: 200px;
   padding-left: 10px;
   &:active {
@@ -87,6 +88,7 @@ const AppPresenter = (props: IProps) => {
         <Key>Send NMD: </Key>
         <SendTxForm onSubmit={props.handleSubmit}>
           <Input
+            as="input"
             placeholder={"Address"}
             required
             name="address"
@@ -94,6 +96,7 @@ const AppPresenter = (props: IProps) => {
             onChange={props.handleInput}
           />
           <Input
+            as="input"
             placeholder={"Amount"}
             required
             name="amount"

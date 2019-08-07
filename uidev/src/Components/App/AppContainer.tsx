@@ -60,6 +60,7 @@ const AppContainer = (props: IProps) => {
 };
 
 const sendSubmit = async (port: number, data: ISendData) => {
+  console.log(port, 'port????/*  */');
   const res = await axios.post(`${SELF_NODE(port)}/transactions`, data);
 }
 
