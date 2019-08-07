@@ -1,10 +1,14 @@
 {
+    "name": "nomadcoin",
     "scripts": {
-        "start": "nodemon --watch src --delay 1 --exec \"ts-node\" main.js",
-        "electron": "set ENV=dev && electron index.js",
         "dev": "concurrently  --kill-others \"yarn electron\"  \"yarn start\"  \" yarn startReact \"",
+        "electron": "set ENV=dev && electron index.js",
+        "start": "nodemon --watch src --delay 1 --exec \"ts-node\" main.js",
+        "startReact": "cd uidev && yarn start",
         "startTsNode": "nodemon --watch src --delay 1 --exec \"ts-node\"",
-        "startReact": "cd uidev && yarn start"
+        "build": "electron-packager . --all --prune=false --ignore=/uidev --overwrite --out=dist",
+        "prebuild": "cd uidev && yarn build",
+        "deleteWallet": "del nomadcoin/src/wallet/privateKey"
     },
     "main": "index.js",
     "devDependencies": {
@@ -22,7 +26,7 @@
         "body-parser": "^1.19.0",
         "cross-env": "^5.2.0",
         "electron": "^1.8.3",
-        "electron-packager": "^11.1.0",
+        "electron-packager": "^14.0.4",
         "get-port": "^5.0.0",
         "nodemon": "^1.19.1",
         "styled-components": "^4.3.2",

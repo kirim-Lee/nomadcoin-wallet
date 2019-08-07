@@ -1,8 +1,13 @@
 const electron = require("electron");
 const path = require("path"),
-  url = require("url");
+  url = require("url"),
+  menu = require('./menu');
 
-const { app, BrowserWindow } = electron;
+const {
+  app,
+  BrowserWindow,
+  Menu
+} = electron;
 
 let mainWindow = null;
 
@@ -14,7 +19,7 @@ function createWindow() {
     title: "Nomadcoin Wallet",
     webPreferences: {
       contextIsolation: false,
-      nodeIntegration: true, 
+      nodeIntegration: true,
       webviewTag: true
 
     }
@@ -23,10 +28,11 @@ function createWindow() {
   const ENV = process.env.ENV;
 
   if (ENV && ENV.trim() === "dev") {
-    console.log("dev is");
     mainWindow.loadURL("http://localhost:3000");
+    mainWindow.webContents.openDevTools();
+
   } else {
-    console.log("build is");
+    Menu.setApplicationMenu(Menu.buildFromTemplate(menu));
     mainWindow.loadURL(
       url.format({
         pathname: path.join(__dirname, "build/index.html"),
